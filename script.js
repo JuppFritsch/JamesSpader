@@ -686,3 +686,142 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Discount Code System
+const validDiscountCodes = {
+    'SPADER30': 30,
+    'LEGAL2025': 30,
+    'ERSTBERATUNG': 30,
+    'NEUKUNDE': 30,
+    'FREUNDE': 30
+};
+
+let appliedDiscount = 0;
+let originalPrices = {
+    'strafrecht': 250,
+    'zivilrecht': 200,
+    'wirtschaftsrecht': 320,
+    'vertraege': 150
+};
+
+function toggleDiscountCode() {
+    const discountInput = document.getElementById('discountInput');
+    const isVisible = discountInput.style.display !== 'none';
+    
+    if (isVisible) {
+        discountInput.style.display = 'none';
+    } else {
+        discountInput.style.display = 'block';
+        document.getElementById('discount-code').focus();
+    }
+}
+
+function applyDiscount() {
+    const codeInput = document.getElementById('discount-code');
+    const resultDiv = document.getElementById('discountResult');
+    const code = codeInput.value.toUpperCase().trim();
+    
+    if (validDiscountCodes[code]) {
+        appliedDiscount = validDiscountCodes[code];
+        resultDiv.className = 'discount-result discount-success';
+        resultDiv.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <strong>Rabatt-Code angewandt!</strong><br>
+            Sie erhalten ${appliedDiscount}% Rabatt auf alle Services
+        `;
+        
+        // Update price displays
+        updatePriceDisplays();
+        
+        console.log(`✅ Rabatt-Code ${code} angewandt: ${appliedDiscount}% Rabatt`);
+    } else {
+        appliedDiscount = 0;
+        resultDiv.className = 'discount-result discount-error';
+        resultDiv.innerHTML = `
+            <i class="fas fa-times-circle"></i>
+            <strong>Ungültiger Code</strong><br>
+            Bitte überprüfen Sie Ihren Rabatt-Code
+        `;
+        
+        console.log(`❌ Ungültiger Rabatt-Code: ${code}`);
+    }
+    
+    // Clear input after attempt
+    setTimeout(() => {
+        codeInput.value = '';
+    }, 2000);
+}
+
+function updatePriceDisplays() {
+    const servicePrices = document.querySelectorAll('.price-tag');
+    const selectOptions = document.querySelectorAll('#service option');
+    
+    if (appliedDiscount > 0) {
+        // Update service cards
+        servicePrices.forEach((priceTag, index) => {
+            const services = ['strafrecht', 'zivilrecht', 'wirtschaftsrecht', 'vertraege'];
+            const service = services[index];
+            if (service && originalPrices[service]) {
+                const originalPrice = originalPrices[service];
+                const discountedPrice = Math.round(originalPrice * (1 - appliedDiscount / 100));
+                const unit = service === 'vertraege' ? '/Dokument' : '/Stunde';
+                
+                priceTag.innerHTML = `
+                    <span class="price-original">$${originalPrice}${unit}</span><br>
+                    <span class="price-discounted">$${discountedPrice}${unit}</span>
+                `;
+            }
+        });
+        
+        // Update select options
+        selectOptions.forEach(option => {
+            const value = option.value;
+            if (value && originalPrices[value]) {
+                const originalPrice = originalPrices[value];
+                const discountedPrice = Math.round(originalPrice * (1 - appliedDiscount / 100));
+                const unit = value === 'vertraege' ? '/Dok.' : '/Std.';
+                
+                const serviceName = option.textContent.split('(')[0].trim();
+                option.textContent = `${serviceName} ($${discountedPrice}${unit} - ${appliedDiscount}% Rabatt!)`;
+            }
+        });
+    } else {
+        // Reset to original prices
+        servicePrices.forEach((priceTag, index) => {
+            const services = ['strafrecht', 'zivilrecht', 'wirtschaftsrecht', 'vertraege'];
+            const service = services[index];
+            if (service && originalPrices[service]) {
+                const originalPrice = originalPrices[service];
+                const unit = service === 'vertraege' ? '/Dokument' : '/Stunde';
+                priceTag.textContent = `$${originalPrice}${unit}`;
+            }
+        });
+        
+        // Reset select options
+        const optionTexts = {
+            'strafrecht': 'Strafrecht ($250/Std.)',
+            'zivilrecht': 'Zivilrecht ($200/Std.)', 
+            'wirtschaftsrecht': 'Wirtschaftsrecht ($320/Std.)',
+            'vertraege': 'Verträge aufsetzen ($150/Dokument)'
+        };
+        
+        selectOptions.forEach(option => {
+            if (option.value && optionTexts[option.value]) {
+                option.textContent = optionTexts[option.value];
+            }
+        });
+    }
+}
+
+// Add Enter key support for discount code
+document.addEventListener('DOMContentLoaded', function() {
+    const discountInput = document.getElementById('discount-code');
+    if (discountInput) {
+        discountInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyDiscount();
+            }
+        });
+    }
+});
