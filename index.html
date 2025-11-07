@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kanzlei James Spader - Ihr vertrauensvoller Rechtsanwalt in Los Santos. Spezialisiert auf Strafrecht, Zivilrecht und Wirtschaftsrecht. 24/7 Notfall-Hotline verfügbar.">
+    <meta name="keywords" content="Rechtsanwalt, Los Santos, James Spader, Strafrecht, Zivilrecht, Wirtschaftsrecht, Anwalt, Rechtsbeistand, GTA RP">
+    <meta name="author" content="Kanzlei James Spader">
+    <meta property="og:title" content="Kanzlei James Spader - Rechtsanwalt in Los Santos">
+    <meta property="og:description" content="Professionelle Rechtsberatung mit über 5 Jahren Erfahrung und 95% Erfolgsquote.">
+    <meta property="og:image" content="img/logo.png">
+    <meta property="og:type" content="website">
+    <title>Kanzlei James Spader - Rechtsanwalt in Los Santos</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
+    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/logo.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Kanzlei James Spader Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h2>Kanzlei James Spader</h2>
+                        <span class="subtitle">Rechtsanwaltskanzlei</span>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Start</a></li>
+                    <li><a href="#about">Über mich</a></li>
+                    <li><a href="#services">Leistungen</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>James Spader</h1>
+                <p class="hero-subtitle">Ihr vertrauensvoller Anwalt in Los Santos</p>
+                <p class="hero-description">Mit über 5 Jahren Erfahrung im Strafrecht, Zivilrecht, Wirtschaftsrecht und Vertragswesen stehe ich Ihnen mit kompetenter Rechtsberatung zur Seite.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Beratungstermin</a>
+                    <a href="#services" class="btn btn-secondary">Unsere Leistungen</a>
+                    <a href="#" class="btn btn-discord" onclick="openDiscord()">
+                        <i class="fab fa-discord"></i> Discord Kontakt
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-logo">
+                    <img src="img/logo.png" alt="Kanzlei James Spader - Großes Logo" class="hero-logo-img">
+                </div>
+                <i class="fas fa-balance-scale"></i>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Über James Spader</h2>
+                        <p>Als erfahrener Rechtsanwalt in Los Santos habe ich mich der Verteidigung der Rechte meiner Mandanten verschrieben. Meine Kanzlei steht für:</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Persönliche und vertrauensvolle Beratung</li>
+                            <li><i class="fas fa-check"></i> Transparente Kostenstrukturen</li>
+                            <li><i class="fas fa-check"></i> 24/7 Erreichbarkeit in Notfällen</li>
+                            <li><i class="fas fa-check"></i> Erfolgreiche Vertretung vor Gericht</li>
+                        </ul>
+                        <div class="stats">
+                            <div class="stat">
+                                <h3>80+</h3>
+                                <p>Erfolgreiche Fälle</p>
+                            </div>
+                            <div class="stat">
+                                <h3>5+</h3>
+                                <p>Jahre Erfahrung</p>
+                            </div>
+                            <div class="stat">
+                                <h3>95%</h3>
+                                <p>Erfolgsquote</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-logo-section">
+                            <img src="img/logo.png" alt="Kanzlei James Spader - Professionelles Logo" class="about-logo-img">
+                        </div>
+                        <div class="lawyer-silhouette">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Unsere Rechtsgebiete</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-gavel service-icon"></i>
+                        <h3>Strafrecht</h3>
+                        <p>Verteidigung in Strafverfahren, Verkehrsdelikte, Betäubungsmittelrecht</p>
+                        <ul>
+                            <li>Diebstahl & Raub</li>
+                            <li>Verkehrsdelikte</li>
+                            <li>Körperverletzung</li>
+                            <li>Wirtschaftsstraftaten</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-handshake service-icon"></i>
+                        <h3>Zivilrecht</h3>
+                        <p>Vertragsrecht, Schadensersatz, Familienrecht und Erbrecht</p>
+                        <ul>
+                            <li>Vertragsstreitigkeiten</li>
+                            <li>Schadensersatz</li>
+                            <li>Mietrecht</li>
+                            <li>Familienrecht</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-building service-icon"></i>
+                        <h3>Wirtschaftsrecht</h3>
+                        <p>Unternehmensberatung, Gesellschaftsrecht, Insolvenzrecht</p>
+                        <ul>
+                            <li>Unternehmensgründung</li>
+                            <li>Gesellschaftsrecht</li>
+                            <li>Insolvenzverfahren</li>
+                            <li>Arbeitsrecht</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-file-contract service-icon"></i>
+                        <h3>Verträge & Dokumente</h3>
+                        <p>Professionelle Vertragserstellung und rechtliche Dokumentation</p>
+                        <ul>
+                            <li>Kaufverträge</li>
+                            <li>Mietverträge</li>
+                            <li>Arbeitsverträge</li>
+                            <li>Geschäftsverträge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="emergency-contact">
+            <div class="container">
+                <div class="emergency-content">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="emergency-text">
+                        <h3>24/7 Notfall-Hotline</h3>
+                        <p>In dringenden Rechtsfällen erreichen Sie mich rund um die Uhr</p>
+                    </div>
+                    <a href="tel:555-SPADER" class="emergency-btn">555-SPADER</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Kontakt & Kanzlei</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>Vinewood Boulevard 1337<br>Los Santos, San Andreas</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Notfall-Hotline</h4>
+                                <p>555-SPADER (Nur für Notfälle)</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-discord"></i>
+                            <div>
+                                <h4>Discord</h4>
+                                <p>JamesSpader#1337</p>
+                                <p>Los Santos Legal Server</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-circle online-status-icon" id="statusIcon"></i>
+                            <div>
+                                <h4>Anwalt Status</h4>
+                                <p id="statusText">Online - Verfügbar für Beratungen</p>
+                                <button class="admin-login-btn" onclick="showAdminPanel()">Admin</button>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <h3>Beratungstermin vereinbaren</h3>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Ihr Ingame Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="ingame-phone" name="ingamePhone" placeholder="Ihre Ingame Telefonnummer" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="discord" name="discord" placeholder="Discord Username (z.B. MeinName#1234)" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="service" name="service" required>
+                                <option value="">Rechtsgebiet auswählen</option>
+                                <option value="strafrecht">Strafrecht</option>
+                                <option value="zivilrecht">Zivilrecht</option>
+                                <option value="wirtschaftsrecht">Wirtschaftsrecht</option>
+                                <option value="vertraege">Verträge aufsetzen</option>
+                                <option value="notfall">Notfall</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Beschreibung Ihres Anliegens" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Discord-Nachricht senden</button>
+                        <div class="discord-info">
+                            <i class="fab fa-discord"></i>
+                            <small>Sie erhalten eine Antwort über Discord DM oder im LS Legal Server</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="img/logo.png" alt="Kanzlei James Spader Logo" class="footer-logo-img">
+                        <h4>Kanzlei James Spader</h4>
+                    </div>
+                    <p>Ihr vertrauensvoller Rechtsanwalt in Los Santos seit 2020.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Schnellzugriff</h4>
+                    <ul>
+                        <li><a href="#about">Über uns</a></li>
+                        <li><a href="#services">Leistungen</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="#emergency">Notfall</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="#">Impressum</a></li>
+                        <li><a href="#">Datenschutz</a></li>
+                        <li><a href="#">AGB</a></li>
+                        <li><a href="#">Mandatsvereinbarung</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kanzlei James Spader. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="success-modal">
+        <div class="modal-content">
+            <h3>Vielen Dank für Ihr Vertrauen!</h3>
+            <p>
+                <strong>Ihre Anfrage wurde erfolgreich übermittelt.</strong><br><br>
+                Die Kanzlei James Spader wird sich in Kürze mit Ihnen in Verbindung setzen. 
+                Wir schätzen Ihr Vertrauen und werden Ihr Anliegen mit höchster Professionalität bearbeiten.
+            </p>
+            <button class="modal-close" onclick="closeModal()">Verstanden</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="adminPanel" class="admin-modal">
+        <div class="admin-content">
+            <span class="admin-close" onclick="closeAdminPanel()">&times;</span>
+            <h3>Status Administration</h3>
+            <div class="admin-login" id="adminLogin">
+                <input type="password" id="adminPassword" placeholder="Admin Passwort eingeben">
+                <button onclick="adminLogin()">Login</button>
+            </div>
+            <div class="admin-controls" id="adminControls" style="display: none;">
+                <h4>Status ändern:</h4>
+                <div class="status-buttons">
+                    <button class="status-btn online-btn" onclick="setStatus('online')">
+                        <i class="fas fa-circle"></i> Online
+                    </button>
+                    <button class="status-btn busy-btn" onclick="setStatus('busy')">
+                        <i class="fas fa-circle"></i> Beschäftigt
+                    </button>
+                    <button class="status-btn offline-btn" onclick="setStatus('offline')">
+                        <i class="fas fa-circle"></i> Offline
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
