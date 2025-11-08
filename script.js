@@ -687,24 +687,101 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Discount Code System
+// Discount Code System - Pro Ingame-Name einmalige Verwendung
 const validDiscountCodes = {
-    'SPADER30': 30,
-    'LEGAL2025': 30,
-    'ERSTBERATUNG': 30,
-    'NEUKUNDE': 30,
-    'FREUNDE': 30
+    'SPADER25': 25,
+    'LEGAL2025': 20,
+    'ERSTBERATUNG': 15,
+    'NEUKUNDE2025': 30
 };
+
+// Gespeicherte verwendet Codes pro Spieler (localStorage)
+// Format: { "PlayerName": ["CODE1", "CODE2"], "AnotherPlayer": ["CODE3"] }
+let usedCodesByPlayer = JSON.parse(localStorage.getItem('usedDiscountCodesByPlayer') || '{}');
 
 let appliedDiscount = 0;
+let currentPlayer = null;
 let originalPrices = {
-    'strafrecht': 250,
-    'zivilrecht': 200,
-    'wirtschaftsrecht': 320,
-    'vertraege': 150
+    'strafrecht': 400,
+    'zivilrecht': 350,
+    'wirtschaftsrecht': 500,
+    'vertraege': 250
 };
 
+// Player Login System für Discount-Codes
+function playerLogin() {
+    const playerName = prompt('Bitte geben Sie Ihren Ingame-Namen ein:');
+    if (playerName && playerName.trim()) {
+        currentPlayer = playerName.trim();
+        localStorage.setItem('currentPlayer', currentPlayer);
+        
+        // Initialisiere Spieler-Codes wenn nicht vorhanden
+        if (!usedCodesByPlayer[currentPlayer]) {
+            usedCodesByPlayer[currentPlayer] = [];
+        }
+        
+        alert(`✅ Willkommen ${currentPlayer}! Sie können jetzt Discount-Codes verwenden.`);
+        console.log(`🎮 Spieler angemeldet: ${currentPlayer}`);
+        
+        // Update UI
+        updatePlayerStatus();
+        return true;
+    } else if (playerName !== null) {
+        alert('❌ Bitte geben Sie einen gültigen Ingame-Namen ein!');
+    }
+    return false;
+}
+
+function updatePlayerStatus() {
+    const statusDiv = document.getElementById('playerStatus');
+    if (statusDiv) {
+        if (currentPlayer) {
+            const usedCodesCount = usedCodesByPlayer[currentPlayer] ? usedCodesByPlayer[currentPlayer].length : 0;
+            statusDiv.innerHTML = `
+                <i class="fas fa-user"></i>
+                Angemeldet als: <strong>${currentPlayer}</strong><br>
+                <small>Verwendete Codes: ${usedCodesCount}</small>
+                <button onclick="playerLogout()" class="logout-btn">Abmelden</button>
+            `;
+        } else {
+            statusDiv.innerHTML = `
+                <i class="fas fa-sign-in-alt"></i>
+                <button onclick="playerLogin()" class="login-btn">Mit Ingame-Namen anmelden</button>
+            `;
+        }
+    }
+}
+
+function playerLogout() {
+    currentPlayer = null;
+    appliedDiscount = 0;
+    localStorage.removeItem('currentPlayer');
+    updatePlayerStatus();
+    updatePriceDisplays(); // Reset prices
+    
+    const resultDiv = document.getElementById('discountResult');
+    if (resultDiv) {
+        resultDiv.innerHTML = '';
+    }
+    
+    alert('👋 Erfolgreich abgemeldet!');
+    console.log('👋 Spieler abgemeldet');
+}
+
 function toggleDiscountCode() {
+    // Prüfe ob Spieler angemeldet ist
+    if (!currentPlayer) {
+        if (playerLogin()) {
+            // Nach erfolgreichem Login, zeige Discount-Input
+            showDiscountInput();
+        }
+        return;
+    }
+    
+    showDiscountInput();
+}
+
+function showDiscountInput() {
     const discountInput = document.getElementById('discountInput');
     const isVisible = discountInput.style.display !== 'none';
     
@@ -721,19 +798,54 @@ function applyDiscount() {
     const resultDiv = document.getElementById('discountResult');
     const code = codeInput.value.toUpperCase().trim();
     
+    // Prüfe ob Spieler angemeldet ist
+    if (!currentPlayer) {
+        resultDiv.className = 'discount-result discount-error';
+        resultDiv.innerHTML = `
+            <i class="fas fa-times-circle"></i>
+            <strong>Nicht angemeldet!</strong><br>
+            Bitte melden Sie sich zuerst mit Ihrem Ingame-Namen an
+        `;
+        return;
+    }
+    
+    // Prüfe ob Spieler diesen Code bereits verwendet hat
+    if (usedCodesByPlayer[currentPlayer] && usedCodesByPlayer[currentPlayer].includes(code)) {
+        appliedDiscount = 0;
+        resultDiv.className = 'discount-result discount-error';
+        resultDiv.innerHTML = `
+            <i class="fas fa-times-circle"></i>
+            <strong>Code bereits verwendet!</strong><br>
+            Sie haben diesen Code bereits eingelöst, ${currentPlayer}
+        `;
+        console.log(`❌ Code bereits verwendet von ${currentPlayer}: ${code}`);
+        return;
+    }
+    
+    // Prüfe ob Code gültig ist
     if (validDiscountCodes[code]) {
         appliedDiscount = validDiscountCodes[code];
+        
+        // Code für diesen Spieler als verwendet markieren
+        if (!usedCodesByPlayer[currentPlayer]) {
+            usedCodesByPlayer[currentPlayer] = [];
+        }
+        usedCodesByPlayer[currentPlayer].push(code);
+        localStorage.setItem('usedDiscountCodesByPlayer', JSON.stringify(usedCodesByPlayer));
+        
         resultDiv.className = 'discount-result discount-success';
         resultDiv.innerHTML = `
             <i class="fas fa-check-circle"></i>
             <strong>Rabatt-Code angewandt!</strong><br>
-            Sie erhalten ${appliedDiscount}% Rabatt auf alle Services
+            ${currentPlayer}, Sie erhalten ${appliedDiscount}% Rabatt auf alle Services<br>
+            <small>✨ Code erfolgreich für Ihren Account eingelöst!</small>
         `;
         
         // Update price displays
         updatePriceDisplays();
+        updatePlayerStatus(); // Update used codes count
         
-        console.log(`✅ Rabatt-Code ${code} angewandt: ${appliedDiscount}% Rabatt`);
+        console.log(`✅ Rabatt-Code ${code} von ${currentPlayer} angewandt: ${appliedDiscount}% Rabatt`);
     } else {
         appliedDiscount = 0;
         resultDiv.className = 'discount-result discount-error';
@@ -742,8 +854,7 @@ function applyDiscount() {
             <strong>Ungültiger Code</strong><br>
             Bitte überprüfen Sie Ihren Rabatt-Code
         `;
-        
-        console.log(`❌ Ungültiger Rabatt-Code: ${code}`);
+        console.log(`❌ Ungültiger Rabatt-Code von ${currentPlayer}: ${code}`);
     }
     
     // Clear input after attempt
@@ -799,10 +910,10 @@ function updatePriceDisplays() {
         
         // Reset select options
         const optionTexts = {
-            'strafrecht': 'Strafrecht ($250/Std.)',
-            'zivilrecht': 'Zivilrecht ($200/Std.)', 
-            'wirtschaftsrecht': 'Wirtschaftsrecht ($320/Std.)',
-            'vertraege': 'Verträge aufsetzen ($150/Dokument)'
+            'strafrecht': 'Strafrecht ($400/Std.)',
+            'zivilrecht': 'Zivilrecht ($350/Std.)', 
+            'wirtschaftsrecht': 'Wirtschaftsrecht ($500/Std.)',
+            'vertraege': 'Verträge aufsetzen ($250/Dokument)'
         };
         
         selectOptions.forEach(option => {
@@ -811,6 +922,46 @@ function updatePriceDisplays() {
             }
         });
     }
+}
+
+// Admin-Funktion: Verwendete Codes zurücksetzen
+function resetUsedCodes() {
+    const adminPassword = prompt('Admin-Passwort eingeben:');
+    if (adminPassword === 'spader2025') {
+        usedCodesByPlayer = {};
+        localStorage.removeItem('usedDiscountCodesByPlayer');
+        alert('✅ Alle verwendeten Codes wurden zurückgesetzt!');
+        console.log('🔧 Admin: Verwendete Codes zurückgesetzt');
+        updatePlayerStatus();
+    } else if (adminPassword !== null) {
+        alert('❌ Falsches Passwort!');
+    }
+}
+
+// Admin-Funktion: Codes eines bestimmten Spielers zurücksetzen
+function resetPlayerCodes() {
+    const adminPassword = prompt('Admin-Passwort eingeben:');
+    if (adminPassword === 'spader2025') {
+        const playerName = prompt('Spielername eingeben:');
+        if (playerName && usedCodesByPlayer[playerName]) {
+            delete usedCodesByPlayer[playerName];
+            localStorage.setItem('usedDiscountCodesByPlayer', JSON.stringify(usedCodesByPlayer));
+            alert(`✅ Codes von ${playerName} wurden zurückgesetzt!`);
+            console.log(`🔧 Admin: Codes von ${playerName} zurückgesetzt`);
+            updatePlayerStatus();
+        } else {
+            alert('❌ Spieler nicht gefunden oder hat keine Codes verwendet!');
+        }
+    } else if (adminPassword !== null) {
+        alert('❌ Falsches Passwort!');
+    }
+}
+
+// Debug-Funktion: Verwendete Codes anzeigen
+function showUsedCodes() {
+    console.log('📊 Verwendete Discount-Codes pro Spieler:', usedCodesByPlayer);
+    console.log('📋 Verfügbare Codes:', Object.keys(validDiscountCodes));
+    console.log('🎮 Aktueller Spieler:', currentPlayer);
 }
 
 // Add Enter key support for discount code
@@ -824,4 +975,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Lade gespeicherten Spieler
+    currentPlayer = localStorage.getItem('currentPlayer');
+    updatePlayerStatus();
+    
+    // Console-Befehle für Admins
+    window.resetUsedCodes = resetUsedCodes;
+    window.resetPlayerCodes = resetPlayerCodes;
+    window.showUsedCodes = showUsedCodes;
+    window.playerLogin = playerLogin;
+    window.playerLogout = playerLogout;
 });
