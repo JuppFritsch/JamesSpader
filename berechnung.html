@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kostenberechnung - Kanzlei James Spader</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="calculation-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <img src="img/logo.png" alt="Kanzlei James Spader" class="logo-img">
+                    <div class="logo-text">
+                        <h2>James Spader</h2>
+                        <span>Rechtsanwalt</span>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="index.html#about">Über uns</a></li>
+                    <li><a href="index.html#services">Leistungen</a></li>
+                    <li><a href="index.html#contact">Kontakt</a></li>
+                    <li><a href="berechnung.html" class="active">Kostenberechnung</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="calculation-header">
+                <h1><i class="fas fa-calculator"></i> Kostenberechnung & Zeittracker</h1>
+                <p>Professionelle Zeiterfassung für Ihre Rechtsberatung</p>
+            </div>
+
+            <div class="calculation-grid">
+                <!-- Service Selection -->
+                <div class="calculation-card">
+                    <h3><i class="fas fa-briefcase"></i> Service Auswahl</h3>
+                    <div class="service-selector">
+                        <label for="serviceType">Rechtsgebiet:</label>
+                        <select id="serviceType" onchange="updateServiceDetails()">
+                            <option value="">Bitte wählen...</option>
+                            <option value="strafrecht" data-rate="400">Strafrecht ($400/Stunde)</option>
+                            <option value="zivilrecht" data-rate="350">Zivilrecht ($350/Stunde)</option>
+                            <option value="wirtschaftsrecht" data-rate="500">Wirtschaftsrecht ($500/Stunde)</option>
+                            <option value="vertraege" data-rate="250">Verträge & Dokumente ($250/Stunde)</option>
+                        </select>
+                    </div>
+                    <div class="service-details" id="serviceDetails">
+                        <div class="rate-display">
+                            <span class="rate-label">Stundensatz:</span>
+                            <span class="rate-amount" id="hourlyRate">$0</span>
+                        </div>
+                        <div class="time-settings">
+                            <label for="minutesPerHour">Minuten pro Ingame-Stunde:</label>
+                            <div class="time-input-group">
+                                <input type="number" id="minutesPerHour" min="1" max="60" value="10" onchange="updateTimeSettings()">
+                                <span class="time-unit">Min</span>
+                            </div>
+                        </div>
+                        <div class="interval-info">
+                            <i class="fas fa-clock"></i>
+                            <span id="intervalDisplay">10 Min Realzeit = 1 Stunde Beratung</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stopwatch -->
+                <div class="calculation-card">
+                    <h3><i class="fas fa-stopwatch"></i> Zeittracker</h3>
+                    <div class="stopwatch-display">
+                        <div class="time-display" id="timeDisplay">00:00:00</div>
+                        <div class="game-hours">
+                            <span>Beratungsstunden: </span>
+                            <span id="gameHours">0.0</span>
+                        </div>
+                    </div>
+                    <div class="stopwatch-controls">
+                        <button class="timer-btn start-btn" id="startBtn" onclick="startTimer()">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button class="timer-btn pause-btn" id="pauseBtn" onclick="pauseTimer()" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="timer-btn reset-btn" id="resetBtn" onclick="resetTimer()">
+                            <i class="fas fa-stop"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cost Calculation -->
+                <div class="calculation-card">
+                    <h3><i class="fas fa-dollar-sign"></i> Kostenübersicht</h3>
+                    <div class="cost-breakdown">
+                        <div class="cost-item">
+                            <span class="cost-label">Beratungsstunden:</span>
+                            <span class="cost-value" id="totalHours">0.0</span>
+                        </div>
+                        <div class="cost-item">
+                            <span class="cost-label">Stundensatz:</span>
+                            <span class="cost-value" id="displayRate">$0</span>
+                        </div>
+                        <div class="cost-divider"></div>
+                        <div class="cost-item total">
+                            <span class="cost-label">Gesamtkosten:</span>
+                            <span class="cost-value" id="totalCost">$0</span>
+                        </div>
+                    </div>
+                    <div class="cost-actions">
+                        <button class="action-btn save-btn" onclick="saveCalculation()">
+                            <i class="fas fa-save"></i> Berechnung speichern
+                        </button>
+                        <button class="action-btn print-btn" onclick="printCalculation()">
+                            <i class="fas fa-print"></i> Rechnung drucken
+                        </button>
+                    </div>
+                </div>
+
+                <!-- History -->
+                <div class="calculation-card full-width">
+                    <h3><i class="fas fa-history"></i> Sitzungsverlauf</h3>
+                    <div class="session-history" id="sessionHistory">
+                        <p class="no-sessions">Noch keine Sitzungen aufgezeichnet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="img/logo.png" alt="Kanzlei James Spader" class="footer-logo">
+                        <div>
+                            <h4>James Spader</h4>
+                            <span>Rechtsanwalt</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kanzlei James Spader. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="calculation.js"></script>
+</body>
+</html>
