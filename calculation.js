@@ -93,8 +93,8 @@ function updateCostDisplay() {
     const totalCost = gameHours * currentRate;
     
     document.getElementById('totalHours').textContent = gameHours.toFixed(2);
-    document.getElementById('displayRate').textContent = `$${currentRate}`;
-    document.getElementById('totalCost').textContent = `$${totalCost.toFixed(2)}`;
+    document.getElementById('displayRate').textContent = `${currentRate}€`;
+    document.getElementById('totalCost').textContent = `${totalCost.toFixed(2)}€`;
 }
 
 // Service Selection
@@ -104,15 +104,15 @@ function updateServiceDetails() {
     
     if (selectedOption.value) {
         currentRate = parseInt(selectedOption.dataset.rate);
-        document.getElementById('hourlyRate').textContent = `$${currentRate}`;
+        document.getElementById('hourlyRate').textContent = `${currentRate}€`;
         
         // Update cost display
         updateCostDisplay();
         
-        console.log(`💼 Service gewählt: ${selectedOption.text} - $${currentRate}/Stunde`);
+        console.log(`💼 Service gewählt: ${selectedOption.text} - ${currentRate}€/Stunde`);
     } else {
         currentRate = 0;
-        document.getElementById('hourlyRate').textContent = '$0';
+        document.getElementById('hourlyRate').textContent = '0€';
         updateCostDisplay();
     }
 }
@@ -250,12 +250,12 @@ function printCalculation() {
                     <tr>
                         <td>${serviceName}</td>
                         <td>${gameHours.toFixed(2)}</td>
-                        <td>$${currentRate}</td>
-                        <td>$${totalCost.toFixed(2)}</td>
+                        <td>${currentRate}€</td>
+                        <td>${totalCost.toFixed(2)}€</td>
                     </tr>
                     <tr class="total-row">
                         <td colspan="3"><strong>Gesamtbetrag:</strong></td>
-                        <td><strong>$${totalCost.toFixed(2)}</strong></td>
+                        <td><strong>${totalCost.toFixed(2)}€</strong></td>
                     </tr>
                 </tbody>
             </table>
@@ -287,7 +287,7 @@ function updateHistoryDisplay() {
             </div>
             <div class="session-details">
                 <span class="session-time">⏱️ ${session.realTime} (${session.gameHours}h Beratung)</span>
-                <span class="session-cost">💰 $${session.totalCost}</span>
+                <span class="session-cost">💰 ${session.totalCost}€</span>
             </div>
             <div class="session-settings">
                 <small>⚙️ ${session.minutesSetting || 10} Min/Std</small>

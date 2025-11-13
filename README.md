@@ -25,7 +25,7 @@ Eine professionelle Website für die Anwaltskanzlei James Spader im GTA RP Unive
 - Zivilrecht  
 - Wirtschaftsrecht
 - Verträge aufsetzen
-- 24/7 Notfall-Service
+- Schnelle Eilverfahren
 
 ## 🚀 Installation
 

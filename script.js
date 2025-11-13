@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
 %c🏛️ Kanzlei James Spader 🏛️
 %cIhr vertrauensvoller Anwalt in Los Santos
 
-%c📞 Notfall-Hotline: 555-SPADER
+%c📞 Kanzlei-Hotline: 555-SPADER
 %c💬 Discord: JamesSpader#1337
 %c⚖️ "Gerechtigkeit ist nicht verhandelbar"
 
@@ -878,8 +878,8 @@ function updatePriceDisplays() {
                 const unit = service === 'vertraege' ? '/Dokument' : '/Stunde';
                 
                 priceTag.innerHTML = `
-                    <span class="price-original">$${originalPrice}${unit}</span><br>
-                    <span class="price-discounted">$${discountedPrice}${unit}</span>
+                    <span class="price-original">${originalPrice}€${unit}</span><br>
+                    <span class="price-discounted">${discountedPrice}€${unit}</span>
                 `;
             }
         });
@@ -893,7 +893,7 @@ function updatePriceDisplays() {
                 const unit = value === 'vertraege' ? '/Dok.' : '/Std.';
                 
                 const serviceName = option.textContent.split('(')[0].trim();
-                option.textContent = `${serviceName} ($${discountedPrice}${unit} - ${appliedDiscount}% Rabatt!)`;
+                option.textContent = `${serviceName} (${discountedPrice}€${unit} - ${appliedDiscount}% Rabatt!)`;
             }
         });
     } else {
@@ -904,16 +904,16 @@ function updatePriceDisplays() {
             if (service && originalPrices[service]) {
                 const originalPrice = originalPrices[service];
                 const unit = service === 'vertraege' ? '/Dokument' : '/Stunde';
-                priceTag.textContent = `$${originalPrice}${unit}`;
+                priceTag.textContent = `${originalPrice}€${unit}`;
             }
         });
         
         // Reset select options
         const optionTexts = {
-            'strafrecht': 'Strafrecht ($400/Std.)',
-            'zivilrecht': 'Zivilrecht ($350/Std.)', 
-            'wirtschaftsrecht': 'Wirtschaftsrecht ($500/Std.)',
-            'vertraege': 'Verträge aufsetzen ($250/Dokument)'
+            'strafrecht': 'Strafrecht (400€/Std.)',
+            'zivilrecht': 'Zivilrecht (350€/Std.)', 
+            'wirtschaftsrecht': 'Wirtschaftsrecht (500€/Std.)',
+            'vertraege': 'Verträge aufsetzen (250€/Dokument)'
         };
         
         selectOptions.forEach(option => {
