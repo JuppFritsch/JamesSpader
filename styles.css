@@ -2846,24 +2846,24 @@ html {
     }
 }
 
-/* ===== BLAUSTETTEN SECTION ===== */
+/* ===== SANTANAV SECTION ===== */
 
-.blaustetten-section {
+.santanav-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     color: white;
     position: relative;
     overflow: hidden;
 }
 
-.blaustetten-section::before {
+.santanav-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,215,0,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 0.3;
 }
 
@@ -2877,40 +2877,40 @@ html {
     z-index: 2;
 }
 
-.blaustetten-logo {
+.santanav-logo {
     flex-shrink: 0;
 }
 
-.bst-logo {
+.santanav-logo-img {
     width: 80px;
     height: 80px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-    border: 3px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+    border: 3px solid #ffd700;
     transition: all 0.3s ease;
 }
 
-.bst-logo:hover {
+.santanav-logo-img:hover {
     transform: scale(1.1);
-    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
 }
 
 .section-title h2 {
     font-size: 2.5rem;
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #d4af37, #ffd700);
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.5rem;
 }
 
-.blaustetten-content {
+.santanav-content {
     position: relative;
     z-index: 2;
 }
 
-.blaustetten-info {
+.santanav-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -2934,7 +2934,7 @@ html {
 .info-icon {
     width: 60px;
     height: 60px;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -2944,12 +2944,12 @@ html {
 
 .info-icon i {
     font-size: 1.8rem;
-    color: white;
+    color: #1a1a1a;
 }
 
 .info-card h3 {
     font-size: 1.3rem;
-    color: #d4af37;
+    color: #ffd700;
     margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
 }
@@ -2959,19 +2959,19 @@ html {
     line-height: 1.6;
 }
 
-.blaustetten-services {
-    background: rgba(255, 255, 255, 0.05);
+.santanav-services {
+    background: rgba(255, 215, 0, 0.05);
     padding: 3rem;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.2);
     margin-bottom: 4rem;
 }
 
-.blaustetten-services h3 {
+.santanav-services h3 {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 3rem;
-    color: #d4af37;
+    color: #ffd700;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2999,7 +2999,7 @@ html {
 
 .service-item i {
     font-size: 1.8rem;
-    color: #d4af37;
+    color: #ffd700;
     margin-top: 0.5rem;
 }
 
@@ -3016,7 +3016,7 @@ html {
     margin: 0;
 }
 
-.blaustetten-stats {
+.santanav-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
@@ -3040,7 +3040,7 @@ html {
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #d4af37;
+    color: #ffd700;
     margin-bottom: 0.5rem;
     font-family: 'Playfair Display', serif;
 }
@@ -3472,13 +3472,14 @@ html {
     }
 }
 
-/* ===== BLAUSTETTEN TEASER (MAIN PAGE) ===== */
+/* ===== SANTANAV TEASER (MAIN PAGE) ===== */
 
 .blaustetten-teaser {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-top: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    color: white;
 }
 
 .teaser-content {
@@ -3490,14 +3491,14 @@ html {
 
 .teaser-text h2 {
     font-size: 2.2rem;
-    color: var(--primary-color);
+    color: #ffd700;
     margin-bottom: 1.5rem;
     font-family: 'Playfair Display', serif;
 }
 
 .teaser-text p {
     font-size: 1.1rem;
-    color: #666;
+    color: #cccccc;
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -3512,12 +3513,12 @@ html {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    color: var(--primary-color);
+    color: #ffd700;
     font-weight: 500;
 }
 
 .feature i {
-    color: var(--accent-color);
+    color: #ffeb3b;
     font-size: 1.2rem;
 }
 
@@ -3525,69 +3526,69 @@ html {
     text-align: center;
 }
 
-.bst-teaser-logo {
+.santanav-teaser-logo {
     width: 120px;
     height: 120px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    border: 3px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+    border: 3px solid #ffd700;
     transition: all 0.3s ease;
 }
 
-.bst-teaser-logo:hover {
+.santanav-teaser-logo:hover {
     transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.5);
 }
 
-/* ===== BLAUSTETTEN PAGE HERO ===== */
+/* ===== SANTANAV PAGE HERO ===== */
 
-.hero-blaustetten {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+.hero-santanav {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
     color: white;
     padding: 8rem 0 6rem;
     position: relative;
     overflow: hidden;
 }
 
-.hero-blaustetten::before {
+.hero-santanav::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,215,0,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 0.3;
 }
 
-.hero-blaustetten .hero-overlay {
+.hero-santanav .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
 }
 
-.hero-blaustetten .hero-content {
+.hero-santanav .hero-content {
     position: relative;
     z-index: 2;
 }
 
-.hero-blaustetten h1 {
+.hero-santanav h1 {
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
     font-family: 'Playfair Display', serif;
 }
 
-.hero-blaustetten .highlight {
-    background: linear-gradient(135deg, #d4af37, #ffd700);
+.hero-santanav .highlight {
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero-blaustetten p {
+.hero-santanav p {
     font-size: 1.3rem;
     margin-bottom: 3rem;
     color: rgba(255, 255, 255, 0.9);
@@ -3598,13 +3599,13 @@ html {
     gap: 1.5rem;
 }
 
-/* ===== BLAUSTETTEN CTA SECTION ===== */
+/* ===== SANTANAV CTA SECTION ===== */
 
-.blaustetten-cta {
-    background: var(--gradient-primary);
+.santanav-cta {
+    background: linear-gradient(135deg, #ffd700, #ffeb3b);
     padding: 4rem 0;
     text-align: center;
-    color: white;
+    color: #1a1a1a;
     margin-top: 4rem;
 }
 
@@ -3630,25 +3631,25 @@ html {
 }
 
 .cta-buttons .btn {
-    background: white;
-    color: var(--primary-color);
-    border: 2px solid white;
+    background: #1a1a1a;
+    color: #ffd700;
+    border: 2px solid #1a1a1a;
 }
 
 .cta-buttons .btn:hover {
     background: transparent;
-    color: white;
+    color: #1a1a1a;
 }
 
 .cta-buttons .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #1a1a1a;
+    border: 2px solid rgba(26, 26, 26, 0.7);
 }
 
 .cta-buttons .btn-secondary:hover {
-    background: white;
-    color: var(--primary-color);
+    background: #1a1a1a;
+    color: #ffd700;
 }
 
 /* Responsive Design */
@@ -3665,16 +3666,16 @@ html {
         gap: 1rem;
     }
     
-    .bst-teaser-logo {
+    .santanav-teaser-logo {
         width: 100px;
         height: 100px;
     }
     
-    .hero-blaustetten {
+    .hero-santanav {
         padding: 6rem 0 4rem;
     }
     
-    .hero-blaustetten h1 {
+    .hero-santanav h1 {
         font-size: 2.5rem;
     }
     
