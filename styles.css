@@ -3690,4 +3690,24 @@ html {
     }
 }
 
+/* ===== RP DISCLAIMER ===== */
+
+.rp-disclaimer {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+    border-top: 3px solid #a93226;
+}
+
+.rp-disclaimer p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.rp-disclaimer strong {
+    color: #ffd700;
+}
+
 /* ===== CALCULATION PAGE STYLES MOVED TO calculation-styles.css ===== */
